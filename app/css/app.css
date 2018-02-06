@@ -1,0 +1,223 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+    color: #f9f9f9;
+    background: #333;
+    height: 100%;
+}
+
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    /*the image loads under the text*/
+    z-index: -1;
+    background: #333;
+    opacity: 0.3;
+    -webkit-user-drag: none;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 100;
+    margin-left: 5%;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+svg {
+    margin-top: 20px;
+}
+
+.menu {
+    list-style: none;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
+    position: absolute;
+    bottom: 1em;
+}
+
+    .menu li {
+        margin: 2em 1em;
+    }
+
+    .menu a {
+        color: #f9f9f9;
+        font-size: 2em;
+        text-decoration: none
+    }
+
+.page-slide input, .page-slide select {
+    display: block;
+    padding: 0.75em;
+    margin: .5em 0 1em 0;
+    width: 90%;
+    font-size: 1em;
+    border: thin solid #ccc;
+}
+
+#addForm .ng-pristine {
+    /*!important forces pristine to override invalid when the form is just loaded*/
+    background: none !important;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -moz-box-align: inherit;
+    
+}
+
+#date {
+    width: 89.8%;
+    font-size: 17px;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+#addForm .ng-dirty {
+    background: #FAC8C8;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+#addForm .ng-valid {
+    background: #E8FAC8;   
+    box-sizing: content-box; 
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+#addForm .ng-invalid {
+    background: #FAC8C8;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+button:disabled {
+    background: rgb(63, 66, 95);
+    color: rgb(250, 250, 250);
+}
+
+.flex-container {
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: flex-start, space-between;
+}
+
+    .flex-container > div {
+        align-self: flex-start;        
+        padding: 0.5em 0.2em;   
+        margin: auto;
+        align-items:flex-start;
+        align-content: flex-start;
+    }
+
+    .flex-container .button-col {
+        display: flex;
+        flex: 1;       
+        color: #c25050;
+    }
+
+.button {
+    display: inline-block;
+    padding: 15px;
+    margin-right: 5px;
+    height: 50px;
+    min-width: 40px;
+    background: #348AA7;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 20px;
+    border-radius: 3px;
+    box-shadow: 0 5px 0px #376b7c;
+    border-bottom: 2px solid #1d5f75;
+}  
+
+.button:hover {
+    background: #2e7a94;
+    box-shadow: 0 4px 1px #2e7a94;
+    border-bottom: 2px solid #2a7088;
+    transition: all 0.1s ease-in;
+  }
+  .button:active {
+    transform: translateY(4px);
+    border-bottom-width: 2px;
+    box-shadow: none;
+  }
+
+  #deleteAll {
+      background: #942e2e;
+      box-shadow: 0 5px 0px #751616;
+    border-bottom: 2px solid #6b2229;
+  }
+
+
+
+/*Medium screens*/
+@media all and (min-width: 600px) {
+    #summary, #details {
+        float: left;
+        width: 49%;
+        padding: 0.25em;
+    }
+}
+
+.page-slide {
+    padding: 2%;
+    /*set to absolute so we can animate the div's left property*/
+    position: absolute;
+    width: 85%;
+    min-height: 90%;
+    opacity: 0.8;
+    background: #222;
+    border: thin solid #111;
+    margin: 0% 5% 5%;
+}
+
+    .page-slide.ng-enter, .page-slide.ng-leave {
+        transition: all 0.9s ease-out;
+        -moz-transition: all 0.9s ease-out;
+        -webkit-transition: all 0.9s ease-out;
+    }
+
+.slide-right.ng-leave {
+    left: 0%;
+}
+
+.slide-right.ng-leave-active {
+    left: 100%;
+}
+
+.slide-right.ng-enter {
+    left: -100%;
+}
+
+.slide-right.ng-enter-active {
+    left: 0%;
+}
+
+.slide-left.ng-leave {
+    left: 0%;
+}
+
+.slide-left.ng-leave-active {
+    left: -100%;
+}
+
+.slide-left.ng-enter {
+    left: 100%;
+}
+
+.slide-left.ng-enter-active {
+    left: 0%;
+}
+

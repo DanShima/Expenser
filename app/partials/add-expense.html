@@ -1,0 +1,19 @@
+<h2>Add Expense</h2>
+<!--disable the browser's default validations-->
+<form id="addForm" name="addForm" novalidate>
+    
+    <label ng-model="expense.index"></label>    
+    <label>Date</label>
+    <input id="date" ng-model="expense.date" type="date" required/>
+    <span class="validity"></span>
+    <label>Category</label>
+    <select ng-model="expense.category" ng-options="category for category in categories" required></select>    
+    <label>Amount:</label>
+    <input type="number" ng-model="expense.amount" required />
+    <label>Description:</label>
+    <input type="text" ng-pattern="/^[a-zA-Z 0-9]*$/" ng-model="expense.description" required />
+    </fieldset>
+    <!--submit button is disabled until all the form fields are valid-->
+    <button class="button" type="button" id="submitButton" ng-disabled="addForm.$pristine || addForm.$dirty && addForm.$invalid" ng-click="submit()">Submit</button>
+
+</form>

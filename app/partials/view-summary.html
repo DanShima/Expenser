@@ -1,0 +1,34 @@
+<div id="details">
+    <h2>My Expenses</h2>
+    <div ng-app="myApp" ng-controller="ViewSummaryCtrl">
+            <input type="text" ng-model="query">
+    </div>        
+    <div class="flex-container" ng-repeat="expense in expenses | filter: query">
+        <div style="flex-grow: 2" class="date-col">{{expense.date}} </div>
+        <div style="flex-grow: 2" class="category-col">{{expense.category}} </div>
+        <div style="flex-grow: 3" class="description-col"> {{expense.description}}</div>
+        <div style="flex-grow: 2" class="amount-col">{{expense.amount| currency: "kr"}} </div>
+        <div style="flex-grow: 1" class="button-col">
+            <button class="button" type="button" ng-click="edit()">Edit</a>
+           <!--<button type="button" ng-click="edit()">
+                Edit
+            </button>-->
+            <button class="button" id="deleteAll" type="button" ng-click="remove(expense)">
+                Remove
+            </button>
+        </div>
+    </div>
+    <button class="button" id="deleteAll" type="button" ng-click="removeAll()">
+        Remove All
+    </button>
+    <button class="button" href="javascript:void(0);" type="button" ng-click="goBack()">
+            Go Back
+    </button>
+</div>
+
+<div id="summary">
+    <h2>Expense Summary</h2>
+
+    <div id="summaryData" bar-chart data='summaryData'></div>
+
+</div>
