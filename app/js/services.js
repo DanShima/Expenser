@@ -61,12 +61,7 @@ var app = angular.module('myApp.services', []).
                 expenses = expenses.filter((expense) => expense.key !== item.key);
                 window.location.reload();
             },
-
-            //attempt to load the form
-            loadEntry: function () {
             
-            
-            },
             //attempt to edit the form   
             editEntry: function (value) {
                 var oldValue = localStorage.getItem(value.key);
@@ -74,7 +69,7 @@ var app = angular.module('myApp.services', []).
                 localStorage.setItem(value.key, value);
             },
 
-                    //another attempt to load data
+            //another attempt to load data
             loadData: function () {
                 //error: input is null
                 var input = document.getElementById("date");

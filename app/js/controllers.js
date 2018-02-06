@@ -56,8 +56,14 @@ angular.module('myApp.controllers', [])
         };
 
         //this button removes everything!!!!!!!!!!!!!!!!!
-        $scope.removeAll = function () {
-            localStorage.clear();
+        $scope.removeAll = function () {            
+            if (confirm("Are you sure you want to delete all expenses?")) {
+                localStorage.clear();
+                window.location.reload();
+            } else {
+                //do nothing
+            }
+           
         };
         
         $scope.goBack = function() {
