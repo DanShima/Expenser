@@ -2,8 +2,9 @@
     <h2>My Expenses</h2>
     <div ng-app="myApp" ng-controller="ViewSummaryCtrl">
             <input type="text" ng-model="query">
-    </div>        
+         
     <div class="flex-container" ng-repeat="expense in expenses | filter: query">
+           
         <div style="flex-grow: 2" class="date-col">{{expense.date}} </div>
         <div style="flex-grow: 2" class="category-col">{{expense.category}} </div>
         <div style="flex-grow: 3" class="description-col"> {{expense.description}}</div>
@@ -18,6 +19,7 @@
             </button>
         </div>
     </div>
+</div> 
     <button class="button" id="deleteAll" type="button" ng-click="removeAll()">
         Remove All
     </button>

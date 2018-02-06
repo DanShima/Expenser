@@ -64,38 +64,7 @@ angular.module('myApp.controllers', [])
            window.history.back();
         }     
     }
-    ])
-    .filter('Filter', [function($filter) {
-
-        return function(inputArray, searchCriteria, category){         
-       
-         if(!angular.isDefined(searchCriteria) || searchCriteria == ''){
-       
-          return inputArray;
-       
-         }         
-       
-         var data=[];
-       
-         angular.forEach(inputArray, function(item){             
-       
-          if(item.category == category){
-       
-           if(item.expense.category.toLowerCase().indexOf(searchCriteria.toLowerCase()) != -1){
-       
-            data.push(item);
-       
-           }
-       
-          }
-       
-         });      
-       
-         return data;
-       
-        };
-       
-       }])
+    ])    
     //for swipe function
     .controller('NavigationCtrl', ['$scope', '$location', function ($scope, $location) {
         //incrementer: move to the next page or the previous one
