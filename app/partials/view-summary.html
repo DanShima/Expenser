@@ -1,24 +1,46 @@
 <div id="details">
     <h2>My Expenses</h2>
     <div ng-app="myApp" ng-controller="ViewSummaryCtrl">
-            <input type="text" placeholder="Search here..." ng-model="query">
+            <input id="filterBox" type="text" placeholder="Search here..." ng-model="query">
          
-    <div class="flex-container" ng-repeat="expense in expenses | filter: query">
+    <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+            </thead>
+    <tr ng-repeat="expense in expenses | filter: query">
            
-        <div style="flex-grow: 2" class="date-col">{{expense.date}} </div>
-        <div style="flex-grow: 2" class="category-col">{{expense.category}} </div>
-        <div style="flex-grow: 3" class="description-col"> {{expense.description}}</div>
-        <div style="flex-grow: 2" class="amount-col">{{expense.amount| currency: "kr"}} </div>
-        <div style="flex-grow: 1" class="button-col">
-            <button class="button" type="button" ng-click="edit()">
-                <i class="fa fa-edit"></i>
+        <td ng-controller="ViewSummaryCtrl" class="date-col">
+            <span editable-date="expense.date" e-form="rowform">{{expense.date}}</span></td>
+        <td class="category-col">
+            <span editable-select="expense.category" e-form="rowform" e-ng-options="category for category in categories" buttons="no">
+            {{expense.category}}</span></td>
+        <td class="description-col">
+            <span editable-text="expense.description" e-form="rowform">{{expense.description || 'empty'}}</span></td>
+        <td class="amount-col">
+            <span editable-number="expense.amount" e-min="1" e-max="10000000" e-form="rowform">{{expense.amount| currency: "kr"}}</span></td>
+        <td style="white-space: nowrap" class="button-col">
+            <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == expense">
+            <button class="button" type="submit" ng-disabled="rowform.$waiting" ng-click="edit(expense)">
+                save
             </button>           
-            <button class="button" id="deleteButton" type="button" ng-click="remove(expense)">
-                    <i class="fa fa-trash"></i>
+            <button class="button" type="button"  ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()">
+                cancel   
             </button>
-        </div>
-    </div>
-</div> 
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+                    <button type="button" class="button" ng-click="rowform.$show()"><i class="fa fa-edit"></i></button>
+                    <button type="button" id="deleteButton" class="button" ng-click="remove(expense)"><i class="fa fa-trash"></i></button>
+                  </div>  
+        </td>
+    </tr>
+</table> 
+<button type="button" class="button" ng-click="addRow()">Add row</button>
+</div>
     <button class="button" id="deleteButton" type="button" ng-click="removeAll()">
             <i class="fa fa-close"></i>
     </button>

@@ -13,26 +13,18 @@ angular.module('myApp.controllers', [])
                 expService.saveExpense($scope.expense);
             };
         }
-   ])
-   .controller('namesCtrl', function($scope) {
-    $scope.names = [
-        'Jani',
-        'Carl',
-        'Margareth',
-        'Hege',
-        'Joe',
-        'Gustav',
-        'Birgit',
-        'Mary',
-        'Kai'
-    ];
-})
-   
+   ])  
     //display the data on View Summary page
     .controller('ViewSummaryCtrl', ['$scope', 'expService', 'categoryList',
-        function ($scope, expService, categoryList) {           
-            $scope.expenses = expService.getExpense();                                         
+        function ($scope, expService, categoryList, $filter) {  
+            $scope.categories = categoryList;                
+            $scope.expenses = expService.getExpense();   
 
+            $scope.showCategory = function() {
+                var selected = $filter('filter')($scope.categories, $scope.expenses.category);
+                return ($scope.expenses.category && selected.length);
+              };
+            
             $scope.summaryData = [];
       //retrieve the sum of each category
         categoryList.forEach(function (item) {
@@ -43,14 +35,26 @@ angular.module('myApp.controllers', [])
               amount: catTotal
           });
 
-         });  
-
-        $scope.edit = function (expense) {           
-           $scope.expenses = localStorage.getItem(expense.key);
-            expService.editEntry();
+         }); 
+         
+        $scope.addRow = function(){
+            $scope.inserted = {
+                date: $scope.expenses.date,
+                category: $scope.expenses.category,
+                description: $scope.expenses.description,
+                amount: $scope.expenses.amount
+            };
+            $scope.expenses.push($scope.inserted);
+            expService.saveExpense($scope.inserted);    
+           
         };
 
-        //trying to remove an item!!!!!!!!!!!!!!!!!!!
+        $scope.edit = function (key) {                 
+            expService.editEntry(key);  
+               
+        };
+
+        
         $scope.remove = function (key) {
             expService.removeEntry(key);
         };

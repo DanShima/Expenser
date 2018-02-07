@@ -51,7 +51,7 @@ var app = angular.module('myApp.services', []).
                             expenses.push(item);
                         }
                     });
-                console.log(expenses);
+                    console.log(expenses);
                 return expenses;
             },            
 
@@ -63,23 +63,18 @@ var app = angular.module('myApp.services', []).
             },
             
             //attempt to edit the form   
-            editEntry: function (value) {
-                var oldValue = localStorage.getItem(value.key);
-                value.key = oldValue.key;
-                localStorage.setItem(value.key, value);
-            },
-
-            //another attempt to load data
-            loadData: function () {
-                //error: input is null
-                var input = document.getElementById("date");
-                for (var i = 0; i < localStorage.length; i++) {
-                    var key = localStorage.key(i);
-                    input.value = localStorage.getItem(key);
-                    console.log("load" + input.value);
+            editEntry: function (value) {                 
+                value = JSON.stringify(value);  
+               // localStorage.setItem(value.key, value); 
+                for(var i = 0; i < localStorage.length; i++){
+                    if(value.key == localStorage.key(i)){
+                        localStorage.setItem(localStorage.key(i), value); 
+                        break;
+                    }
                 }
+                console.log(value);        
             },
-            
+                     
 
             getCategoryTotal: function (category) {
                 var categoryTotal = 0;

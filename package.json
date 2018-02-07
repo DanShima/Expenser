@@ -29,8 +29,10 @@
   },
   "dependencies": {
     "angular-i18n": "^1.6.8",
+    "angular-indexed-db": "^1.0.1",
     "angular-local-storage": "^0.7.1",
     "angular-ui-grid": "^4.2.3",
+    "angular-xeditable": "^0.8.1",
     "d3": "^4.13.0"
   }
 }
