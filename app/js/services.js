@@ -62,31 +62,18 @@ var app = angular.module('myApp.services', []).
             },
             
             //attempt to edit the form   
-            editEntry: function (valueArr) {;
-                
-                var key = valueArr.key;
-                delete valueArr.key;
-                delete valueArr.$$hashKey;
-                console.log(JSON.stringify(valueArr)); 
-                
-                //THIS IS WRONG:
-                //valueArr.split(
-                //valueArr = valueArr.remove(key);
+            editEntry: function (valueArr) {
 
-                var value = JSON.stringify(valueArr);
-                //var value = JSON.stringify(valueArr.date)+JSON.stringify(valueArr.category);
-               // localStorage.valueArr = JSON.stringify(valueArr);
-        
-                localStorage.setItem(key, value); 
-                
-               // expenses = valueArr;  
-                //for(var i = 0; i < localStorage.length; i++){
-                 //   if(value.key == localStorage.key(i)){
-                 //       localStorage.setItem(localStorage.key(i), value); 
-                 //       break;
-                //    }
-               // }
-                console.log(valueArr);        
+                //retrieve key
+                var key = valueArr.key;
+                //delete unused data
+                delete valueArr.key;
+                delete valueArr.$$hashKey;                
+                console.log(JSON.stringify(valueArr));               
+                var value = JSON.stringify(valueArr);  
+                //update the data              
+                localStorage.setItem(key, value);               
+                console.log(value);        
             },
                               
 

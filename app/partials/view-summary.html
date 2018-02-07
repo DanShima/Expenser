@@ -20,7 +20,7 @@
             <span editable-select="expense.category" e-form="rowform" e-ng-options="category for category in categories" buttons="no">
             {{expense.category}}</span></td>
         <td class="description-col">
-            <span editable-text="expense.description" ng-maxlength="10" e-form="rowform">{{expense.description || 'empty'}}</span></td>
+            <span editable-text="expense.description" ng-maxlength="10" e-form="rowform">{{expense.description}}</span></td>
         <td class="amount-col">
             <span editable-number="expense.amount" e-min="1" e-max="10000000" e-form="rowform">{{expense.amount| currency: "kr"}}</span></td>
         <td style="white-space: nowrap" class="button-col">
