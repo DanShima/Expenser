@@ -9,8 +9,7 @@ var app = angular.module('myApp.services', []).
     .factory('expService', [function () {
         var prefix = 'spending';
         //empty array to store requested items
-        var expenses = [];   
-            
+        var expenses = [];               
         
         return {   
             
@@ -38,7 +37,7 @@ var app = angular.module('myApp.services', []).
 
             //this function shows the expenses stored in localStorage
             getExpense: function () {
-                expenses = [];
+                expenses =[];
                 var prefixLength = prefix.length;
                 Object.keys(localStorage)
                     .forEach(function (key) {                        
@@ -51,7 +50,7 @@ var app = angular.module('myApp.services', []).
                             expenses.push(item);
                         }
                     });
-                    console.log(expenses);
+                 //   console.log(expenses);
                 return expenses;
             },            
 
@@ -63,18 +62,22 @@ var app = angular.module('myApp.services', []).
             },
             
             //attempt to edit the form   
-            editEntry: function (value) {                 
-                value = JSON.stringify(value);  
-               // localStorage.setItem(value.key, value); 
-                for(var i = 0; i < localStorage.length; i++){
-                    if(value.key == localStorage.key(i)){
-                        localStorage.setItem(localStorage.key(i), value); 
-                        break;
-                    }
-                }
-                console.log(value);        
+            editEntry: function (valueArr) {  
+
+                localStorage.valueArr = JSON.stringify(valueArr);
+                            //value = JSON.stringify(value);  
+                    localStorage.setItem(localStorage.valueArr.key, valueArr); 
+                
+               // expenses = valueArr;  
+                //for(var i = 0; i < localStorage.length; i++){
+                 //   if(value.key == localStorage.key(i)){
+                 //       localStorage.setItem(localStorage.key(i), value); 
+                 //       break;
+                //    }
+               // }
+                console.log(valueArr);        
             },
-                     
+                              
 
             getCategoryTotal: function (category) {
                 var categoryTotal = 0;

@@ -11,7 +11,6 @@ var app = angular.module('myApp', [
   'ngTouch',
   'ngAnimate',
   'xeditable',
-  'indexedDB'
   
 ]).config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
@@ -31,13 +30,4 @@ var app = angular.module('myApp', [
       redirectTo: '/'
   });
  }
- ]).config(function ($indexedDBProvider) {
-    $indexedDBProvider
-      .connection('myIndexedDB')
-      .upgradeDatabase(1, function(event, db, tx){
-        var objStore = db.createObjectStore('people', {keyPath: 'ssn'});
-        objStore.createIndex('name_idx', 'name', {unique: false});
-        objStore.createIndex('age_idx', 'age', {unique: false});
-      });
-  });
-
+ ]);

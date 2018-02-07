@@ -6,18 +6,25 @@ angular.module('myApp.controllers', [])
   .controller('HomeCtrl', function () {})  
   .controller('AddExpenseCtrl', ['$scope', 'categoryList', 'expService',
         function ($scope, categoryList, expService) {
-            $scope.categories = categoryList;               
+            $scope.categories = categoryList;        
 
             //calls the saveExpense method of the factory and pass the form data
-            $scope.submit = function () {
-                expService.saveExpense($scope.expense);
+            $scope.submit = function () {             
+               expService.saveExpense($scope.expense);
             };
+
+            //go to the summary page
+            $scope.goBack = function() {
+                window.location.href = '#/view-summary';
+             }  
         }
    ])  
     //display the data on View Summary page
     .controller('ViewSummaryCtrl', ['$scope', 'expService', 'categoryList',
         function ($scope, expService, categoryList, $filter) {  
-            $scope.categories = categoryList;                
+                        
+            $scope.categories = categoryList;    
+            //read the expenses from localStorage            
             $scope.expenses = expService.getExpense();   
 
             $scope.showCategory = function() {
@@ -35,23 +42,11 @@ angular.module('myApp.controllers', [])
               amount: catTotal
           });
 
-         }); 
-         
-        $scope.addRow = function(){
-            $scope.inserted = {
-                date: $scope.expenses.date,
-                category: $scope.expenses.category,
-                description: $scope.expenses.description,
-                amount: $scope.expenses.amount
-            };
-            $scope.expenses.push($scope.inserted);
-            expService.saveExpense($scope.inserted);    
-           
-        };
-
-        $scope.edit = function (key) {                 
-            expService.editEntry(key);  
+         });         
                
+        //edit an existing expense
+        $scope.edit = function (key) {               
+            expService.editEntry(key);              
         };
 
         
@@ -88,8 +83,12 @@ angular.module('myApp.controllers', [])
 
 
             var direction = pageIndex + incrementer;
-            if (direction === -1) direction = lastPageIndex;
-            if (direction > lastPageIndex) incrementer = 0;
+            if (direction === -1) {
+                direction = lastPageIndex;
+            }
+            if (direction > lastPageIndex) {
+                incrementer = 0;
+            }
             nextUrl = pages[direction];
             $location.url(nextUrl);
 

@@ -20,7 +20,7 @@
             <span editable-select="expense.category" e-form="rowform" e-ng-options="category for category in categories" buttons="no">
             {{expense.category}}</span></td>
         <td class="description-col">
-            <span editable-text="expense.description" e-form="rowform">{{expense.description || 'empty'}}</span></td>
+            <span editable-text="expense.description" ng-maxlength="10" e-form="rowform">{{expense.description || 'empty'}}</span></td>
         <td class="amount-col">
             <span editable-number="expense.amount" e-min="1" e-max="10000000" e-form="rowform">{{expense.amount| currency: "kr"}}</span></td>
         <td style="white-space: nowrap" class="button-col">
@@ -39,13 +39,14 @@
         </td>
     </tr>
 </table> 
-<button type="button" class="button" ng-click="addRow()">Add row</button>
+<!--
+<button type="button" class="button" ng-click="addRow()">Add row</button>-->
 </div>
     <button class="button" id="deleteButton" type="button" ng-click="removeAll()">
             <i class="fa fa-close"></i>
     </button>
-    <button class="button" href="javascript:void(0);" type="button" ng-click="goBack()">
-            <i class="fa fa-arrow-left"></i>
+    <button class="button" href="#/add-expense" type="button" ng-click="goBack()">
+            <i class="fa fa-plus"></i>
     </button>
 </div>
 
