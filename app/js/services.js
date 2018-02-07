@@ -65,10 +65,13 @@ var app = angular.module('myApp.services', []).
             editEntry: function (valueArr) {;
                 
                 var key = valueArr.key;
+                delete valueArr.key;
+                delete valueArr.$$hashKey;
                 console.log(JSON.stringify(valueArr)); 
                 
                 //THIS IS WRONG:
-                valueArr = valueArr.remove(key);
+                //valueArr.split(
+                //valueArr = valueArr.remove(key);
 
                 var value = JSON.stringify(valueArr);
                 //var value = JSON.stringify(valueArr.date)+JSON.stringify(valueArr.category);
