@@ -25,7 +25,12 @@ angular.module('myApp.controllers', [])
                         
             $scope.categories = categoryList;    
             //read the expenses from localStorage            
-            $scope.expenses = expService.getExpense();   
+            $scope.expenses = expService.getExpense();  
+
+            
+            $scope.update = function(){
+                return $http.post('/update', $scope.expenses);
+            } 
 
             $scope.showCategory = function() {
                 var selected = $filter('filter')($scope.categories, $scope.expenses.category);

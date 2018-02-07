@@ -25,7 +25,7 @@
             <span editable-number="expense.amount" e-min="1" e-max="10000000" e-form="rowform">{{expense.amount| currency: "kr"}}</span></td>
         <td style="white-space: nowrap" class="button-col">
             <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == expense">
-            <button class="button" type="submit" ng-disabled="rowform.$waiting" ng-click="edit(expense)">
+            <button class="button" type="submit" ng-disabled="rowform.$waiting" onaftersave="update()">
                 save
             </button>           
             <button class="button" type="button"  ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()">
