@@ -27,7 +27,7 @@ angular.module('myApp.controllers', [])
             //read the expenses from localStorage            
             $scope.expenses = expService.getExpense();  
 
-            
+
             $scope.update = function(){
                 return $http.post('/update', $scope.expenses);
             } 
@@ -71,7 +71,7 @@ angular.module('myApp.controllers', [])
         };
         
         $scope.goBack = function() {
-           window.history.back();
+           window.location.href = '#/add-expense';
         }     
     }
     ])    
