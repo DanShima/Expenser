@@ -1,7 +1,6 @@
 'use strict';
 
 /* Controllers */
-
 angular.module('myApp.controllers', [])
   .controller('HomeCtrl', function () {})  
   .controller('AddExpenseCtrl', ['$scope', 'categoryList', 'expService',
@@ -41,12 +40,10 @@ angular.module('myApp.controllers', [])
       //retrieve the sum of each category
         categoryList.forEach(function (item) {
           var catTotal = expService.getCategoryTotal(item);
-
           $scope.summaryData.push({
               category: item,
               amount: catTotal
           });
-
          });         
                
         //edit an existing expense
@@ -59,15 +56,14 @@ angular.module('myApp.controllers', [])
             expService.removeEntry(key);
         };
 
-        //this button removes everything!!!!!!!!!!!!!!!!!
+        //this button removes everything!!!!
         $scope.removeAll = function () {            
             if (confirm("Are you sure you want to delete all expenses?")) {
                 localStorage.clear();
                 window.location.reload();
             } else {
                 //do nothing
-            }
-           
+            }           
         };
         
         $scope.goBack = function() {
@@ -80,13 +76,10 @@ angular.module('myApp.controllers', [])
         //incrementer: move to the next page or the previous one
         var navigator = function (incrementer) {
             var pages = ['/', '/add-expense', '/view-summary'];
-
             var nextUrl = "";
             var currentPage = $location.path(); //get current path
             var lastPageIndex = pages.length - 1;
             var pageIndex = pages.indexOf(currentPage);
-
-
             var direction = pageIndex + incrementer;
             if (direction === -1) {
                 direction = lastPageIndex;
@@ -96,9 +89,7 @@ angular.module('myApp.controllers', [])
             }
             nextUrl = pages[direction];
             $location.url(nextUrl);
-
             $scope.swipeDirection = (incrementer === 1) ? 'slide-right' : 'slide-left';
-
         };
 
         $scope.goLeft = function () {
@@ -107,11 +98,8 @@ angular.module('myApp.controllers', [])
 
 
         $scope.goRight = function () {
-
             navigator(1);
-
-
         };
 
-    }]);
+}]);
 

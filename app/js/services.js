@@ -89,13 +89,10 @@ var app = angular.module('myApp.services', []).
                                 //convert numbers from string to float and then sum them up
                                 categoryTotal = categoryTotal + parseFloat(item.amount);
                             }
-
                         }
-
                     });
                 return categoryTotal;
             }
-
 
         };
     }]);

@@ -15,13 +15,10 @@ angular.module('myApp.directives', []).
             return {
                 scope: {
                     data: '=',
-
                 },
 
                 link: function (scope, element, attrs) {
-
                     var chart = d3.select('#chart')
-
                         .append('svg')
                         .style('width', '90%');
                     
@@ -35,9 +32,7 @@ angular.module('myApp.directives', []).
                             color = d3.scale.category20(), //colors for the bars
                             xScale = d3.scale.linear() //generate the relevant output that is adaptable in range for given input
                                 .domain([0, d3.max(data, function (d) { //takes an array as the input and sets the starting and ending values of the input
-
                                     return d.amount;
-
                                 })])
                                 .range([0, chartWidth]); //takes array as input with starting and ending values of the output to draw
                         chart.attr('height', chartHeight);
@@ -85,9 +80,6 @@ angular.module('myApp.directives', []).
                             .text(function (d) {
                                 return d.amount;
                             });
-
-
-
                     };
                     scope.drawGraph(scope.data);
                     //if the window has been resized, we will redraw and update the graph
