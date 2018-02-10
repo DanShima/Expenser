@@ -12,7 +12,7 @@
                       <th scope="col">Amount</th>
                     </tr>
             </thead>
-    <tr ng-repeat="expense in expenses | filter: query">
+    <tr ng-repeat="expense in expenses | filter: query | orderBy: 'date'">
            
         <td ng-controller="ViewSummaryCtrl" class="date-col">
             <span editable-date="expense.date" e-form="rowform">{{expense.date}}</span></td>
