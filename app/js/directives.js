@@ -14,21 +14,22 @@ angular.module('myApp.directives', []).
         function ($document, $window) {
             return {
                 scope: {
+                    //data will receive the values to generate the graph
                     data: '=',
                 },
 
                 link: function (scope, element, attrs) {
                     var chart = d3.select('#chart')
                         .append('svg')
-                        .style('width', '90%');
+                        .style('width', '90%'); //set the width of the svg tag to 90% of its parent <div>
                     
                     scope.drawGraph = function (data) {
                         chart.selectAll('*').remove(); //remove all elements before a redraw
-                        var barHeight = 18, 
+                        var barHeight = 18, //the height of a single bar
                             barGap = 7, //the space between two bars
-                            graphOrigin = 150, //left margin for the bars
+                            graphOrigin = 150, //starting point and left margin for the bars
                             chartWidth = chart.style('width'), //the width of the chart's element
-                            chartHeight = scope.data.length * (barHeight + barGap),
+                            chartHeight = scope.data.length * (barHeight + barGap), 
                             color = d3.scale.category20(), //colors for the bars
                             xScale = d3.scale.linear() //generate the relevant output that is adaptable in range for given input
                                 .domain([0, d3.max(data, function (d) { //takes an array as the input and sets the starting and ending values of the input
@@ -36,11 +37,11 @@ angular.module('myApp.directives', []).
                                 })])
                                 .range([0, chartWidth]); //takes array as input with starting and ending values of the output to draw
                         chart.attr('height', chartHeight);
-
+                        //draw the bars
                         chart.selectAll('myBars')
                             .data(data)
                             .enter()
-                            .append('rect')
+                            .append('rect') 
                             .attr('height', barHeight)
                             .attr('x', graphOrigin)
                             .attr('y', function (d, i) {
@@ -52,7 +53,7 @@ angular.module('myApp.directives', []).
                             .attr('width', function (d) {
                                 return xScale(d.amount);
                             });
-
+                        //add the category labels
                         chart.selectAll('categoryLabel')
                             .data(data)
                             .enter()
@@ -66,7 +67,7 @@ angular.module('myApp.directives', []).
                             .text(function (d) {
                                 return d.category;
                             });
-
+                        //show spending values over the bars 
                         chart.selectAll('values')
                             .data(data)
                             .enter()
@@ -83,7 +84,7 @@ angular.module('myApp.directives', []).
                     };
                     scope.drawGraph(scope.data);
                     //if the window has been resized, we will redraw and update the graph
-                    $window.onresize = function () {
+                    $window.onresize = function () {                        
                         scope.$apply(scope.drawGraph(scope.data));
                     };
 

@@ -85,7 +85,7 @@ angular.module('myApp.controllers', [])
                 direction = lastPageIndex;
             }
             if (direction > lastPageIndex) {
-                incrementer = 0;
+                direction = 0;
             }
             nextUrl = pages[direction];
             $location.url(nextUrl);
