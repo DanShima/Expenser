@@ -36,6 +36,7 @@
     "angular-touch": "^1.6.9",
     "angular-ui-grid": "^4.2.3",
     "angular-xeditable": "^0.8.1",
-    "d3": "^4.13.0"
+    "d3": "^4.13.0",
+    "ecstatic": "^3.2.0"
   }
 }
